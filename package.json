@@ -1,0 +1,14 @@
+{
+  "name": "json2env",
+  "version": "0.0.1",
+  "description": "converts json on input to .env/.ini format",
+  "bin": "bin/json2env.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Mark Higham",
+  "license": "MIT",
+  "devDependencies": {
+  }
+}
