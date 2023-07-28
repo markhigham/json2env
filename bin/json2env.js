@@ -1,29 +1,33 @@
 #!/usr/bin/env node
 
-var data = "";
+let data = ''
 
-function convertToEnv(data){
-    let json;
-    try {
-        json = JSON.parse(data);
-    } catch {
-        console.error("Input stream is not json");
-        process.exit(-1);
+function convertToEnv(data) {
+  let json
+  try {
+    json = JSON.parse(data)
+  } catch {
+    console.error('Input stream is not json')
+    process.exit(-1)
+  }
+
+  for (let key in json) {
+    let value = json[key]
+    if (typeof value === 'object') {
+      value = JSON.stringify(value)
     }
 
-    for(let p in json){
-        console.log(`${p}=${json[p]}`);
-    }
-
+    console.log(`${key}=${value}`)
+  }
 }
 
 process.stdin.on('readable', () => {
-    let chunk;
-    while (null !== (chunk = process.stdin.read())) {
-      data += chunk.toString();
-    }
-  });
+  let chunk
+  while (null !== (chunk = process.stdin.read())) {
+    data += chunk.toString()
+  }
+})
 
-process.stdin.on("end", function () {
-  convertToEnv(data);
-});
+process.stdin.on('end', function () {
+  convertToEnv(data)
+})
